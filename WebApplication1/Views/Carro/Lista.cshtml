@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication1.Models.Carro>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2 class="text-center mb-4">Lista de Carros</h2>
+
+<p>
+    <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
+</p>
+
+<table class="table  table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ano)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cor)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Placa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cor)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Exibir Detalhes", "Exibir", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

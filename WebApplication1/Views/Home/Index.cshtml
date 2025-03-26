@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main class="container mt-5 text-center">
+    <div class="jumbotron p-5 bg-light shadow-lg rounded">
+        <p class="lead">Gerencie seus carros, celulares e eventos de forma simples e eficiente.</p>
+        <hr class="my-4">
+        <p>Escolha uma das opções abaixo para começar:</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="@Url.Action("Lista", "Carro")" class="btn btn-primary btn-lg">Lista de Carros</a>
+            <a href="@Url.Action("Lista", "Celular")" class="btn btn-success btn-lg">Lista de Celulares</a>
+            <a href="@Url.Action("List", "Evento")" class="btn btn-warning btn-lg">Lista de Eventos</a>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,44 @@
+﻿@model WebApplication1.Models.Celular
+
+@{
+    ViewBag.Title = "Exibir Carro";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg w-50 mx-auto">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Detalhes do Carro</h2>
+        </div>
+
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-6 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Numero)
+                </dt>
+
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Numero)
+                </dd>
+
+                <dt class="col-sm-6 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Marca)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Marca)
+                </dd>
+
+                <dt class="col-sm-6 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Novo)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Novo)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="card-footer text-center">
+            <a href="@Url.Action("Editar", "Celular", new { id = ViewBag.id })" class="btn btn-warning px-4 me-3">Editar</a>
+            <a href="@Url.Action("Lista", "Celular")" class="btn btn-secondary px-4">Voltar</a>
+        </div>
+    </div>
+</div>

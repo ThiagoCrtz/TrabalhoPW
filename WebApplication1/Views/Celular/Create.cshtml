@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.Celular
+
+@{
+    ViewBag.Title = "Criar Celular";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg w-50 mx-auto">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Criar Celular</h2>
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <h4>Preencha os dados do Celular</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row mt-2">
+                    @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row mt-2">
+                    @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
+                    <div class="col-md-9 d-flex align-items-center">
+                        <div class="form-check">
+                            @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "form-check-input" } })
+                            @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-3">
+                    <div class="col-md-12 text-center">
+                        <input type="submit" value="Criar" class="btn btn-success btn-lg" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        @Html.ActionLink("Voltar para a Lista", "Lista", null, new { @class = "btn btn-secondary btn-md px-4" })
+    </div>
+</div>

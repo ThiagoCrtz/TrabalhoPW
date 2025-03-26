@@ -1,0 +1,44 @@
+﻿@model WebApplication1.Models.Carro
+
+@{
+    ViewBag.Title = "Exibir Carro";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg w-50 mx-auto">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Detalhes do Carro</h2>
+        </div>
+
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Placa)
+                </dt>
+
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Placa)
+                </dd>
+
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Ano)
+                </dt>
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Ano)
+                </dd>
+
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.Cor)
+                </dt>
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Cor)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="card-footer text-center">
+                @Html.ActionLink("Editar", "Editar", new { id = ViewBag.id }, new { @class = "btn btn-warning px-4 me-3" })
+                @Html.ActionLink("Voltar para a Lista", "Lista", null, new { @class = "btn btn-secondary btn-md px-4" })
+            </div>
+        </div>
+    </div>
