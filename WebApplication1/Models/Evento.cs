@@ -9,7 +9,10 @@ namespace WebApplication1.Models
     {
         public string Local { get; set; }
         public DateTime Data { get; set; }
-
+        public string GetFormattedData()
+        {
+            return Data.ToString("dd/MM/yyyy"); 
+        }
         public static void GerarLista(HttpSessionStateBase session)
         {
             if (session["ListaEve"] != null)
@@ -37,6 +40,7 @@ namespace WebApplication1.Models
 
             return null;
         }
+
 
         public void Adicionar(HttpSessionStateBase session)
         {

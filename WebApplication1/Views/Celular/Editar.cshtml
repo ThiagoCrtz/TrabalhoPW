@@ -32,19 +32,20 @@
                     </div>
                 </div>
 
-                <div class="form-group row mt-2">
-                    @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "col-md-3 col-form-label fw-bold text-md-end" })
-                    <div class="col-md-9 d-flex align-items-center">
+                <div class="form-group row justify-content-center mb-3">
+                    @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "col-md-3 fw-bold text-md-end" })
+                    <div class="col-md-6 d-flex">
                         <div class="form-check">
-                            @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "form-check-input text-center"} })
+                            @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "form-check-input" } })
                             @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
+
                 <div class="text-center mt-4">
                     <input type="submit" value="Salvar" class="btn btn-success btn-lg px-4" />
-                    <a href="@Url.Action("Lista", "Carro")" class="btn btn-secondary btn-lg px-4 ms-3">Voltar</a>
+                    <a href="@Url.Action("Lista", "Celular")" class="btn btn-secondary btn-lg px-4 ms-3">Voltar</a>
                 </div>
             }
         </div>

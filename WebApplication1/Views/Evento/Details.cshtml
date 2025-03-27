@@ -1,13 +1,13 @@
 ﻿@model WebApplication1.Models.Evento
 
 @{
-    ViewBag.Title = "Exibir Carro";
+    ViewBag.Title = "Exibir Eventos";
 }
 
 <div class="container mt-4">
     <div class="card shadow-lg w-50 mx-auto">
         <div class="card-header bg-primary text-white text-center">
-            <h2>Detalhes do Carro</h2>
+            <h2>Detalhes do Evento</h2>
         </div>
 
         <div class="card-body">
@@ -24,14 +24,14 @@
                     @Html.DisplayNameFor(model => model.Data)
                 </dt>
                 <dd class="col-sm-5">
-                    @Html.DisplayFor(model => model.Data)
+                    @Model.GetFormattedData()
                 </dd>
             </dl>
         </div>
 
             <div class="card-footer text-center">
                 @Html.ActionLink("Editar", "Edit", new { id = ViewBag.id }, new { @class = "btn btn-warning px-4 me-3" })
-                @Html.ActionLink("Voltar para a Lista", "List", null, new { @class = "btn btn-secondary btn-lg px-4" })
+                @Html.ActionLink("Voltar para a Lista", "List", null, new { @class = "btn btn-secondary  px-4" })
             </div>
         </div>
     </div>

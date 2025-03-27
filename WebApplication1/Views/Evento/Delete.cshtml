@@ -24,7 +24,7 @@
                     @Html.DisplayNameFor(model => model.Data)
                 </dt>
                 <dd class="col-md-7 text-start">
-                    @Html.DisplayFor(model => model.Data)
+                    @Model.GetFormattedData()
                 </dd>
 
             </dl>
