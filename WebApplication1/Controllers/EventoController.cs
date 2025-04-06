@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using System.IO;// A BIBLIOTECA DE ENTRADA E SAIDA DE ARQUIVOS
 
+using iTextSharp;//E A BIBLIOTECA ITEXTSHARP E SUAS EXTENÇÕES
+using iTextSharp.text;//ESTENSAO 1 (TEXT)
+using iTextSharp.text.pdf;//ESTENSAO 2 (PDF)
 namespace WebApplication1.Controllers
 {
     public class EventoController : Controller

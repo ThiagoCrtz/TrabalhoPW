@@ -21,17 +21,16 @@
                 </dd>
 
                 <dt class="col-sm-5 fw-bold text-end">
-                    @Html.DisplayNameFor(model => model.Ano)
-                </dt>
-                <dd class="col-sm-5">
-                    @Html.DisplayFor(model => model.Ano)
-                </dd>
-
-                <dt class="col-sm-5 fw-bold text-end">
                     @Html.DisplayNameFor(model => model.Cor)
                 </dt>
                 <dd class="col-sm-5">
                     @Html.DisplayFor(model => model.Cor)
+                </dd>
+                <dt class="col-sm-5 fw-bold text-end">
+                    <p>Ano do carro</p>
+                </dt>
+                <dd class="col-sm-5">
+                    @Model.GetFormattedData()
                 </dd>
             </dl>
         </div>

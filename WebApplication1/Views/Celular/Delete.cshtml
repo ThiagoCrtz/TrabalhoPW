@@ -33,6 +33,12 @@
                 <dd class="col-md-7 text-md-start">
                     @Html.DisplayFor(model => model.Novo)
                 </dd>
+                <dt class="col-md-5 text-md-end fw-bold">
+                    <p>Data de fabricação</p>
+                </dt>
+                <dd class="col-md-7 text-start">
+                    @Model.GetFormattedData()
+                </dd>
             </dl>
 
             @using (Html.BeginForm())

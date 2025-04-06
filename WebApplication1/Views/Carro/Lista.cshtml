@@ -16,11 +16,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Placa)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ano)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Cor)
+            </th>
+            <th>
+                <p> Ano do carro</p>
             </th>
         </tr>
     </thead>
@@ -31,11 +32,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Placa)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ano)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Cor)
+                </td>
+                <td>
+                    @item.GetFormattedData()
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |

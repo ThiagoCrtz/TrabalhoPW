@@ -26,12 +26,11 @@
                 <dd class="col-sm-6">
                     @Html.DisplayFor(model => model.Marca)
                 </dd>
-
-                <dt class="col-sm-6 fw-bold text-end">
-                    @Html.DisplayNameFor(model => model.Novo)
+                <dt class="col-sm-5 fw-bold text-end">
+                    <p>Data de fabricação</p>
                 </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Novo)
+                <dd class="col-sm-5">
+                    @Model.GetFormattedData()
                 </dd>
             </dl>
         </div>

@@ -20,12 +20,6 @@
                     @Html.DisplayFor(model => model.Placa)
                 </dd>
 
-                <dt class="col-md-5 text-md-end fw-bold">
-                    @Html.DisplayNameFor(model => model.Ano)
-                </dt>
-                <dd class="col-md-7 text-start">
-                    @Html.DisplayFor(model => model.Ano)
-                </dd>
 
                 <dt class="col-md-5 text-md-end fw-bold">
                     @Html.DisplayNameFor(model => model.Cor)
@@ -33,6 +27,14 @@
                 <dd class="col-md-7 text-md-start">
                     @Html.DisplayFor(model => model.Cor)
                 </dd>
+
+                <dt class="col-md-5 text-md-end fw-bold">
+                   <p>Ano do carro</p>
+                </dt>
+                <dd class="col-md-7 text-start">
+                    @Model.GetFormattedData()
+                </dd>
+
             </dl>
 
             @using (Html.BeginForm())

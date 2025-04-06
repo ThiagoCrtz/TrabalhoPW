@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Novo)
             </th>
+            <th>
+                <p> Data de fabricação</p>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +39,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Novo)
+                </td>
+                <td>
+                    @item.GetFormattedData()
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |

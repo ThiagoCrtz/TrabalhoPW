@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using WebApplication1.Models;
+using WebApplication1.Reports;
+
 namespace WebApplication1.Controllers
 {
     public class CarroController : Controller
     {
-        //meu
+        public ActionResult Report(Carro carro)
+        {
+            CarroReport carroReport = new CarroReport();
+            Carro.GerarLista(Session);
+
+            List<Carro> lista = (List<Carro>)Session["ListaCarro"];
+            byte[] bytes = carroReport.Preapare(lista);
+            return File(bytes, "application/pdf");
+        }
         public ActionResult Index()
         {
             return View();
@@ -61,6 +74,7 @@ namespace WebApplication1.Controllers
             carro.Editar(Session, id);
             return RedirectToAction("Lista");
         }
+
 
     }
 }
