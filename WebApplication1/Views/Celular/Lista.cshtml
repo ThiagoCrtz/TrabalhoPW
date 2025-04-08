@@ -6,10 +6,12 @@
 
 <h2 class="text-center mb-4">Lista de Celular</h2>
 
-<p>
-    <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo Celular</a>
-</p>
+<div class="form-group d-flex gap-2 mb-3">
 
+    <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
+    <a class="btn btn-outline-dark" href="@Url.Action("Report")">Ver Pdf</a>
+    <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar pdf</a>
+</div>
 <table class="table  table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
@@ -22,8 +24,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Novo)
             </th>
-            <th>
-                <p> Data de fabricação</p>
+            <th class="aling-text-center">
+                Data de fabricação
             </th>
         </tr>
     </thead>

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.Ajax.Utilities;
 using WebApplication1.Models;
 using WebApplication1.Reports;
 
@@ -13,18 +14,23 @@ namespace WebApplication1.Controllers
 {
     public class CarroController : Controller
     {
-        public ActionResult Report(Carro carro)
-        {
-            CarroReport carroReport = new CarroReport();
-            Carro.GerarLista(Session);
 
-            List<Carro> lista = (List<Carro>)Session["ListaCarro"];
-            byte[] bytes = carroReport.Preapare(lista);
-            return File(bytes, "application/pdf");
-        }
+
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Report(Carro carro)
+        {
+            CarroReport report = new CarroReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf");
+        }
+        public FileResult BaixarPDf()
+        {
+            CarroReport report = new CarroReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf", "ListaCarros.pdf");
         }
 
         public ActionResult Lista()

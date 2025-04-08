@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using WebApplication1.Models;
+using WebApplication1.Reports;
 
 namespace WebApplication1.Controllers
 {
@@ -30,6 +31,8 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+
         //so pra testar a ferramenta
         //public ActionResult pdf()
         //{

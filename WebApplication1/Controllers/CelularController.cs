@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Reports;
 
 namespace WebApplication1.Controllers
 {
@@ -13,6 +14,18 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Report(Celular celular)
+        {
+            CelularReport report = new CelularReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf");
+        }
+        public FileResult BaixarPDf()
+        {
+            CelularReport report = new CelularReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf", "ListaCelulares.pdf");
         }
 
         [HttpGet]

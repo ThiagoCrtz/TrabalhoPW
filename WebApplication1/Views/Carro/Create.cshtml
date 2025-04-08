@@ -23,7 +23,12 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "form-control text-center" } })
+                        @Html.TextBoxFor(model => model.Placa, new {
+                           @class = "form-control text-center",
+                           @id = "placa",
+                           @name = "placa",
+                           @style = "text-transform:uppercase"
+                        })
                         @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -37,7 +42,7 @@
                 </div>
 
                 <div class="form-group row mt-2">
-                    <div class="col-md-3 col-form-label text-md-end" >
+                    <div class="col-md-3 col-form-label text-md-end">
                         <P>Ano do carro</P>
                     </div>
                     <div class="col-md-9">
@@ -47,15 +52,30 @@
                 </div>
 
                 <div class="form-group row mt-3">
-                    <div class="col-md-12 text-center">
-                        <input type="submit" value="Criar" class="btn btn-success btn-lg" />
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <input type="submit" value="Criar" class="btn btn-success btn-lg me-2" />
+                        @Html.ActionLink("Voltar", "Lista", null, new { @class = "btn btn-secondary btn-lg" })
                     </div>
                 </div>
+
             }
         </div>
     </div>
 
-    <div class="mt-4 text-center">
-        @Html.ActionLink("Voltar para a Lista", "Lista", null, new { @class = "btn btn-secondary btn-md px-4" })
-    </div>
+
 </div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#placa').mask('SSS-0000', {
+                translation: {
+                    'S': { pattern: /[A-Za-z]/ },
+                    '0': { pattern: /[0-9]/ }
+                },
+                placeholder: "ABC-1234"
+            });
+        });
+    </script>
+}

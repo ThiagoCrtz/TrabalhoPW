@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using System.IO;// A BIBLIOTECA DE ENTRADA E SAIDA DE ARQUIVOS
+using System.IO;
 
-using iTextSharp;//E A BIBLIOTECA ITEXTSHARP E SUAS EXTENÇÕES
-using iTextSharp.text;//ESTENSAO 1 (TEXT)
-using iTextSharp.text.pdf;//ESTENSAO 2 (PDF)
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using WebApplication1.Reports;
 namespace WebApplication1.Controllers
 {
     public class EventoController : Controller
@@ -18,6 +19,19 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public ActionResult Report(Evento eventos)
+        {
+            EventoReport report = new EventoReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf");
+        }
+        public FileResult BaixarPDf()
+        {
+            EventoReport report = new EventoReport();
+            byte[] bytes = report.ConfigurarPdfs();
+            return File(bytes, "application/pdf", "ListaEventos.pdf");
+        }
+
         public ActionResult List()
         {
             Evento.GerarLista(Session);

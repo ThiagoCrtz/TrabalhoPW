@@ -6,10 +6,12 @@
 
 <h2 class="text-center mb-4">Lista de Carros</h2>
 
-<p>
+<div class="form-group d-flex gap-2 mb-3">
+   
     <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
-</p>
-
+    <a class="btn btn-outline-dark" href="@Url.Action("Report")">Ver Pdf</a>
+    <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar pdf</a>
+</div>
 <table class="table  table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
@@ -20,8 +22,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cor)
             </th>
-            <th>
-                <p> Ano do carro</p>
+            <th class="aling-text-center">
+                Ano do carro
             </th>
         </tr>
     </thead>
@@ -46,5 +48,6 @@
                 </td>
             </tr>
         }
+
     </tbody>
 </table>
