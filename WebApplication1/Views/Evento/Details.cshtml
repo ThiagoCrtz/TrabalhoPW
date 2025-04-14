@@ -1,7 +1,7 @@
 ﻿@model WebApplication1.Models.Evento
 
 @{
-    ViewBag.Title = "Exibir Eventos";
+    ViewBag.Title = "Exibir Evento";
 }
 
 <div class="container mt-4">
@@ -15,24 +15,43 @@
                 <dt class="col-sm-5 fw-bold text-end">
                     @Html.DisplayNameFor(model => model.Local)
                 </dt>
-
                 <dd class="col-sm-5">
                     @Html.DisplayFor(model => model.Local)
                 </dd>
 
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.cep)
+                </dt>
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.cep)
+                </dd>
+
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.endereço)
+                </dt>
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.endereço)
+                </dd>
+
+                <dt class="col-sm-5 fw-bold text-end">
+                    @Html.DisplayNameFor(model => model.cidade)
+                </dt>
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.cidade)
+                </dd>
                 <dt class="col-sm-5 fw-bold text-end">
                     @Html.DisplayNameFor(model => model.Data)
                 </dt>
                 <dd class="col-sm-5">
                     @Model.GetFormattedData()
                 </dd>
+
             </dl>
         </div>
 
-            <div class="card-footer text-center">
-                @Html.ActionLink("Editar", "Edit", new { id = ViewBag.id }, new { @class = "btn btn-warning px-4 me-3" })
-                @Html.ActionLink("Voltar para a Lista", "List", null, new { @class = "btn btn-secondary  px-4" })
-            </div>
+        <div class="card-footer text-center">
+            @Html.ActionLink("Editar", "Edit", new { id = ViewBag.id }, new { @class = "btn btn-warning px-4 me-3" })
+            @Html.ActionLink("Voltar para a Lista", "List", null, new { @class = "btn btn-secondary  px-4" })
         </div>
     </div>
 </div>

@@ -7,6 +7,10 @@ namespace WebApplication1.Models
 {
     public class Evento
     {
+        public string cep { get; set; }
+        public string endereço { get; set; }
+        public string cidade { get; set; }
+
         public string Local { get; set; }
         public DateTime Data { get; set; }
         public string GetFormattedData()
@@ -24,9 +28,32 @@ namespace WebApplication1.Models
             }
             var listaEventos = new List<Evento>();
             {
-                listaEventos.Add(new Evento { Local = "São Paulo", Data = new DateTime(2023, 5, 10) });
-                listaEventos.Add(new Evento { Local = "Rio de Janeiro", Data = new DateTime(2023, 6, 15) });
-                listaEventos.Add(new Evento { Local = "Belo Horizonte", Data = new DateTime(2023, 7, 20) });
+                listaEventos.Add(new Evento
+                {
+                    cep = "01000-000",
+                    endereço = "Av. Paulista, 1000",
+                    cidade = "São Paulo",
+                    Local = "São Paulo",
+                    Data = new DateTime(2023, 5, 10)
+                });
+
+                listaEventos.Add(new Evento
+                {
+                    cep = "20000-000",
+                    endereço = "Praia de Copacabana, 50",
+                    cidade = "Rio de Janeiro",
+                    Local = "Rio de Janeiro",
+                    Data = new DateTime(2023, 6, 15)
+                });
+
+                listaEventos.Add(new Evento
+                {
+                    cep = "30000-000",
+                    endereço = "Praça da Liberdade, 80",
+                    cidade = "Belo Horizonte",
+                    Local = "Belo Horizonte",
+                    Data = new DateTime(2023, 7, 20)
+                });
             }
             session.Remove("ListaEve");
             session.Add("ListaEve", listaEventos);
@@ -63,6 +90,9 @@ namespace WebApplication1.Models
                 var evento = Evento.Procurar(session, id);
                 evento.Data = this.Data;
                 evento.Local = this.Local;
+                evento.cep = this.cep;
+                evento.endereço = this.endereço;
+                evento.cidade = this.cidade;
             }
         }
     }

@@ -2,46 +2,45 @@
 
 @{
     ViewBag.Title = "Lista";
-
 }
 
 <h2 class="text-center mb-4">Lista de Eventos</h2>
 
 <div class="form-group d-flex gap-2 mb-3">
-
-    <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
-    <a class="btn btn-outline-dark" href="@Url.Action("Report")">Ver Pdf</a>
-    <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar pdf</a>
+    <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo evento</a>
+    <a class="btn btn-outline-dark" href="@Url.Action("Report")">Ver Relatório PDF</a>
+    <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar PDF</a>
 </div>
 
-<table class="table  table-bordered table-hover">
+<table class="table table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Local)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Local)</th>
+            <th>CEP</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
+            <th>@Html.DisplayNameFor(model => model.Data)</th>
+
+            <th>Ações</th>
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Local)</td>
+                <td>@item.cep</td>
+                <td>@item.endereço</td>
+                <td>@item.cidade</td>
+                <td>@item.GetFormattedData()</td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Local)
-            </td>
-            <td>
-                @item.GetFormattedData()
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
-                @Html.ActionLink("Exibir Detalhes", "Details", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
-            </td>
-        </tr>
-    }
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Exibir Detalhes", "Details", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

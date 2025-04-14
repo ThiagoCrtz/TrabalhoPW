@@ -9,10 +9,13 @@ namespace WebApplication1.Reports
     {
         public byte[] Prepare(List<Evento> eventos)
         {
-            var cabecalhos = new[] { "Local", "Data"};
+            var cabecalhos = new[] { "Local", "Cep", "Endereço", "Cidade", "Data"};
             var dados = eventos.Select(c => new string[]
             {
                 c.Local,
+                c.cep,
+                c.endereço,
+                c.cidade,
                 c.GetFormattedData(),
             }).ToList();
             var gerador = new PdfReportGenerator();
