@@ -5,13 +5,20 @@ using System.Linq;
 using System.Web;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
     public class Carro
     {
+        [Required(ErrorMessage = "A placa é obrigatória")]
+        [StringLength(7, ErrorMessage = "A placa deve ter 7 caracteres")]
         public string Placa { get; set; }
+
+        [Required(ErrorMessage = "A cor é obrigatória")]
         public string Cor { get; set; }
+
+        [Required(ErrorMessage = "O ano é obrigatório")]
         public DateTime Data { get; set; }
         public string GetFormattedData()
         {
@@ -27,9 +34,10 @@ namespace WebApplication1.Models
                 }
             }
             var listaVeiculos = new List<Carro>();
-            listaVeiculos.Add(new Carro { Placa = "ABC-1234", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
-            listaVeiculos.Add(new Carro { Placa = "DEF-5678",  Cor = "Branco", Data = new DateTime(2018, 8, 23) });
-            listaVeiculos.Add(new Carro { Placa = "GHI-9012", Cor = "Azul", Data = new DateTime(2020, 3, 15) });
+            listaVeiculos.Add(new Carro { Placa = "ABC1D23", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
+            listaVeiculos.Add(new Carro { Placa = "DEF2G45", Cor = "Branco", Data = new DateTime(2018, 8, 23) });
+            listaVeiculos.Add(new Carro { Placa = "GHI3J67", Cor = "Azul", Data = new DateTime(2020, 3, 15) });
+
 
             session.Remove("ListaCarro");
             session.Add("ListaCarro", listaVeiculos);

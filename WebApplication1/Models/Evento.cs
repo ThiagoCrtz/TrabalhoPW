@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,19 @@ namespace WebApplication1.Models
 {
     public class Evento
     {
+        [Required(ErrorMessage = "O cep é obrigatório.")]
         public string cep { get; set; }
+
+        [Required(ErrorMessage = "O endereço é obrigatório.")]
         public string endereço { get; set; }
+
+        [Required(ErrorMessage = "A cidade é obrigatória.")]
         public string cidade { get; set; }
 
+        [Required(ErrorMessage = "O local é obrigatório.")]
         public string Local { get; set; }
+
+        [Required(ErrorMessage = "A data é obrigatória.")]
         public DateTime Data { get; set; }
         public string GetFormattedData()
         {

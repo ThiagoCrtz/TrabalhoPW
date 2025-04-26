@@ -9,7 +9,7 @@ namespace WebApplication1.Reports
     {
         public byte[] Prepare(List<Evento> eventos)
         {
-            var cabecalhos = new[] { "Local", "Cep", "Endereço", "Cidade", "Data"};
+            var cabecalhos = new[] { "Local", "Cep", "Endereço", "Cidade", "Data" };
             var dados = eventos.Select(c => new string[]
             {
                 c.Local,

@@ -21,14 +21,16 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group row">
+
                     @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Placa, new {
-                           @class = "form-control text-center",
-                           @id = "placa",
-                           @name = "placa",
-                           @style = "text-transform:uppercase"
-                        })
+                        @Html.TextBoxFor(model => model.Placa, new
+                   {
+                       @class = "form-control text-center",
+                       @id = "placa",
+                       @name = "placa",
+                       @style = "text-transform:uppercase"
+                   })
                         @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -66,16 +68,11 @@
 </div>
 
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#placa').mask('SSS-0000', {
-                translation: {
-                    'S': { pattern: /[A-Za-z]/ },
-                    '0': { pattern: /[0-9]/ }
-                },
-                placeholder: "ABC-1234"
-            });
-        });
-    </script>
+@section Scripts {    
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Js/Validatorplaca.js"></script>
+
+
 }

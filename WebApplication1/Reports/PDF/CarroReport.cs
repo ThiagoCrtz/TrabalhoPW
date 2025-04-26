@@ -12,20 +12,20 @@ namespace WebApplication1.Reports
 {
     public class CarroReport
     {
-        public byte[] Preapare(List<Carro> carros)
-        {
-            var cabecalhos = new[] { "Placa", "Cor", "Ano" };
-
-            var dados = carros.Select(c => new string[]
+            public byte[] Preapare(List<Carro> carros)
             {
-            c.Placa,
-            c.Cor,
-            c.Data.Year.ToString()
-            }).ToList();
+                var cabecalhos = new[] { "Placa", "Cor", "Ano" };
 
-            var gerador = new PdfReportGenerator();
-            return gerador.GerarRelatorio("Carros", cabecalhos, dados);
-        }
+                var dados = carros.Select(c => new string[]
+                {
+                c.Placa,
+                c.Cor,
+                c.Data.Year.ToString()
+                }).ToList();
+
+                var gerador = new PdfReportGenerator();
+                return gerador.GerarRelatorio("Carros", cabecalhos, dados);
+            }
         public byte[] ConfigurarPdfs()
         {
             CarroReport carroReport = new CarroReport();
