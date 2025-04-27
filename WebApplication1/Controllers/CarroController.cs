@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -87,20 +88,34 @@ namespace WebApplication1.Controllers
         {
             carro.Adicionar(Session);
             return RedirectToAction("Lista");
-        }      
-   
-        public ActionResult Delete(int id)
-        {
-            return View((Session["ListaCarro"] as List<Carro>).ElementAt(id));
-
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Carro carro, int id)
+        public ActionResult DeleteAjax(int id)
         {
-            Carro.Procurar(Session, id)?.Excluir(Session);
-            return RedirectToAction("Lista");
+            var carro = Carro.Procurar(Session, id);
+            if (carro != null)
+            {
+                carro.Excluir(Session);
+                Debug.WriteLine($"Carro excluído com ID {id}.");  // Verifique se o carro foi excluído.
+                return Json(new { sucesso = true });
+            }
+            Debug.WriteLine($"Carro com ID {id} não encontrado.");  // Caso não encontre o carro.
+            return new HttpStatusCodeResult(404, "Carro não encontrado");
         }
+
+
+        //public ActionResult Delete(int id)
+        //{
+        //    return View((Session["ListaCarro"] as List<Carro>).ElementAt(id));
+
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(Carro carro, int id)
+        //{
+        //    Carro.Procurar(Session, id)?.Excluir(Session);
+        //    return RedirectToAction("Lista");
+        //}
         public ActionResult Editar(int id)
         {
             return View(Carro.Procurar(Session, id));

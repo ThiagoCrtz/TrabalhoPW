@@ -6,11 +6,13 @@ using System.Web;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WebApplication1.Models
 {
     public class Carro
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "A placa é obrigatória")]
         [StringLength(7, ErrorMessage = "A placa deve ter 7 caracteres")]
         public string Placa { get; set; }
@@ -34,9 +36,9 @@ namespace WebApplication1.Models
                 }
             }
             var listaVeiculos = new List<Carro>();
-            listaVeiculos.Add(new Carro { Placa = "ABC1D23", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
-            listaVeiculos.Add(new Carro { Placa = "DEF2G45", Cor = "Branco", Data = new DateTime(2018, 8, 23) });
-            listaVeiculos.Add(new Carro { Placa = "GHI3J67", Cor = "Azul", Data = new DateTime(2020, 3, 15) });
+            listaVeiculos.Add(new Carro {Id=0, Placa = "ABC1D23", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
+            listaVeiculos.Add(new Carro { Id = 1, Placa = "DEF2G45", Cor = "Branco", Data = new DateTime(2018, 8, 23) });
+            listaVeiculos.Add(new Carro { Id = 2, Placa = "GHI3J67", Cor = "Azul", Data = new DateTime(2020, 3, 15) });
 
 
             session.Remove("ListaCarro");
@@ -58,18 +60,19 @@ namespace WebApplication1.Models
         }
         public void Adicionar(HttpSessionStateBase session)
         {
-            if (session["ListaCarro"] != null)
-            {
-                (session["ListaCarro"] as List<Carro>).Add(this);
-            }
+            var lista = session["ListaCarro"] as List<Carro>;
+
+            this.Id = lista.Count;
+
+            lista.Add(this);
         }
         public void Excluir(HttpSessionStateBase session)
         {
-            if (session["ListaCarro"] != null)
-            {
-                (session["ListaCarro"] as List<Carro>).Remove(this);
-            }
+            var lista = session["ListaCarro"] as List<Carro>;
+            lista.RemoveAll(a => a.Id == this.Id);
+            Debug.WriteLine("Carro excluído. Lista agora contém " + lista.Count + " carros.");
         }
+
         public void Editar(HttpSessionStateBase session, int id)
         {
             if (session["ListaCarro"] != null)

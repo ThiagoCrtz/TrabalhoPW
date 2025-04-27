@@ -7,48 +7,62 @@
 <h2 class="text-center mb-4">Lista de Carros</h2>
 
 <div class="form-group d-flex gap-2 mb-3">
-   
     <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
     <a class="btn btn-outline-dark" href="@Url.Action("DownloadExcel")">Baixar Excel</a>
     <a class="btn btn-outline-dark" href="@Url.Action("ReportPDf")">Ver Pdf</a>
     <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar pdf</a>
 </div>
-<table class="table  table-bordered table-hover">
+
+<table id="tabelaCarro" class="table table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Placa)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Cor)
-            </th>
-            <th class="aling-text-center">
-                Ano do carro
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Placa)</th>
+            <th>@Html.DisplayNameFor(model => model.Cor)</th>
+            <th>Ano do carro</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Placa)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cor)</td>
+                <td>@item.GetFormattedData()</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Placa)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cor)
-                </td>
-                <td>
-                    @item.GetFormattedData()
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
-                    @Html.ActionLink("Exibir Detalhes", "Exibir", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Exibir Detalhes", "Exibir", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                    <button class="btn btn-danger btn-sm" onclick="excluirCarro('@item.Id')">Excluir</button>
                 </td>
             </tr>
         }
-
     </tbody>
 </table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            $('#tabelaCarro').DataTable();
+        });
+
+        function excluirCarro(id) {
+            if (confirm('Deseja realmente excluir este carro?')) {
+                $.post('@Url.Action("DeleteAjax", "Carro")', { id: id }, function (data) {
+                    console.log("1");
+                    if (data.sucesso) {
+                    location.reload();
+                } else {
+                    alert("Erro ao excluir carro.");
+                }
+            });
+
+
+            }
+        }
+    </script>
+}
