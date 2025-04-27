@@ -92,17 +92,27 @@ namespace WebApplication1.Controllers
             return RedirectToAction("List");
 
         }
-        [HttpGet]
-        public ActionResult Delete(int id)
+        //[HttpGet]
+        //public ActionResult Delete(int id)
+        //{
+        //    return View(Evento.Procurar(Session, id));
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(Evento evento, int id)
+        //{
+        //    Evento.Procurar(Session, id)?.Excluir(Session);
+        //    return RedirectToAction("List");
+        //}
+        public ActionResult DeleteAjax(int id)
         {
-            return View(Evento.Procurar(Session, id));
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Evento evento, int id)
-        {
-            Evento.Procurar(Session, id)?.Excluir(Session);
-            return RedirectToAction("List");
+            var evento = Evento.Procurar(Session, id);
+            if (evento != null)
+            {
+                evento.Excluir(Session);
+                return Json(new { sucesso = true });
+            }
+            return new HttpStatusCodeResult(404, "Evento não encontrado");
         }
         [HttpGet]
         public ActionResult Edit(int id)

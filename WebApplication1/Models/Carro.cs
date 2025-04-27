@@ -36,7 +36,7 @@ namespace WebApplication1.Models
                 }
             }
             var listaVeiculos = new List<Carro>();
-            listaVeiculos.Add(new Carro {Id=0, Placa = "ABC1D23", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
+            listaVeiculos.Add(new Carro { Id=0, Placa = "ABC1D23", Cor = "Preto", Data = new DateTime(2015, 5, 10) });
             listaVeiculos.Add(new Carro { Id = 1, Placa = "DEF2G45", Cor = "Branco", Data = new DateTime(2018, 8, 23) });
             listaVeiculos.Add(new Carro { Id = 2, Placa = "GHI3J67", Cor = "Azul", Data = new DateTime(2020, 3, 15) });
 

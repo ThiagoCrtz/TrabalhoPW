@@ -25,12 +25,12 @@
                     @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "col-md-3 col-form-label text-md-end" })
                     <div class="col-md-9">
                         @Html.TextBoxFor(model => model.Placa, new
-                   {
-                       @class = "form-control text-center",
-                       @id = "placa",
-                       @name = "placa",
-                       @style = "text-transform:uppercase"
-                   })
+                       {
+                           @class = "form-control text-center",
+                           @id = "placa",
+                           @name = "placa",
+                           @style = "text-transform:uppercase"
+                       })
                         @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
                     </div>
                 </div>

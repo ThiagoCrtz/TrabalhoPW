@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,8 @@ namespace WebApplication1.Models
 {
     public class Evento
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "O cep é obrigatório.")]
         public string cep { get; set; }
 
@@ -39,6 +42,7 @@ namespace WebApplication1.Models
             {
                 listaEventos.Add(new Evento
                 {
+                    Id = 0,
                     cep = "01000-000",
                     endereço = "Av. Paulista, 1000",
                     cidade = "São Paulo",
@@ -48,6 +52,7 @@ namespace WebApplication1.Models
 
                 listaEventos.Add(new Evento
                 {
+                    Id = 1,
                     cep = "20000-000",
                     endereço = "Praia de Copacabana, 50",
                     cidade = "Rio de Janeiro",
@@ -57,6 +62,7 @@ namespace WebApplication1.Models
 
                 listaEventos.Add(new Evento
                 {
+                    Id = 2,
                     cep = "30000-000",
                     endereço = "Praça da Liberdade, 80",
                     cidade = "Belo Horizonte",
@@ -80,17 +86,17 @@ namespace WebApplication1.Models
 
         public void Adicionar(HttpSessionStateBase session)
         {
-            if (session["ListaEve"] != null)
-            {
-                (session["ListaEve"] as List<Evento>).Add(this);
-            }
+            var lista = session["ListaEve"] as List<Evento>;
+
+            this.Id = lista.Count;
+
+            lista.Add(this);
         }
         public void Excluir(HttpSessionStateBase session)
         {
-            if (session["ListaEve"] != null)
-            {
-                (session["ListaEve"] as List<Evento>).Remove(this);
-            }
+            var lista = session["ListaEve"] as List<Evento>;
+            lista.RemoveAll(a => a.Id == this.Id);
+            Debug.WriteLine("Evento excluído. Lista agora contém " + lista.Count + " Evento.");
         }
         public void Editar(HttpSessionStateBase session, int id)
         {   

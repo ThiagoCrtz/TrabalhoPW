@@ -85,18 +85,28 @@ namespace WebApplication1.Controllers
             celular.Adicionar(Session);
             return RedirectToAction("Lista");
         }
-        [HttpGet]
-        public ActionResult Delete(int id)
+        //public ActionResult Delete(int id)
+        //{
+        //    return View(Celular.Procurar(Session, id));
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(Celular celular, int id)
+        //{
+        //    Celular.Procurar(Session, id)?.Excluir(Session);
+        //    return RedirectToAction("Lista");
+        //}
+        public ActionResult DeleteAjax(int id)
         {
-            return View(Celular.Procurar(Session, id));
+            var celular = Celular.Procurar(Session, id);
+            if (celular != null)
+            {
+                celular.Excluir(Session);
+                return Json(new { sucesso = true });
+            }
+            return new HttpStatusCodeResult(404, "Celular não encontrado");
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Celular celular, int id)
-        {
-            Celular.Procurar(Session, id)?.Excluir(Session);
-            return RedirectToAction("Lista");
-        }
+
         [HttpGet]
         public ActionResult Editar(int id)
         {

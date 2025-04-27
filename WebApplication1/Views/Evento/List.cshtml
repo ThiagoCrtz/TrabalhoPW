@@ -14,7 +14,7 @@
     <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar PDF</a>
 </div>
 
-<table class="table table-bordered table-hover">
+<table id="tabelaEvento" class="table table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
             <th>@Html.DisplayNameFor(model => model.Local)</th>
@@ -40,9 +40,37 @@
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Exibir Detalhes", "Details", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
+                    <button class="btn btn-danger btn-sm" onclick="excluirEvento('@item.Id')">Excluir</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            $('#tabelaEvento').DataTable();
+        });
+
+        function excluirEvento(id) {
+            if (confirm('Deseja realmente excluir este evento?')) {
+                $.post('@Url.Action("DeleteAjax", "Evento")', { id: id }, function (data) {
+                    console.log("1");
+                    if (data.sucesso) {
+                    location.reload();
+                } else {
+                    alert("Erro ao excluir evento.");
+                }
+            });
+
+
+            }
+        }
+    </script>
+}

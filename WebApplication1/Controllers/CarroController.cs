@@ -96,10 +96,8 @@ namespace WebApplication1.Controllers
             if (carro != null)
             {
                 carro.Excluir(Session);
-                Debug.WriteLine($"Carro excluído com ID {id}.");  // Verifique se o carro foi excluído.
                 return Json(new { sucesso = true });
             }
-            Debug.WriteLine($"Carro com ID {id} não encontrado.");  // Caso não encontre o carro.
             return new HttpStatusCodeResult(404, "Carro não encontrado");
         }
 

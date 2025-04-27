@@ -9,11 +9,11 @@
 <div class="form-group d-flex gap-2 mb-3">
 
     <a class="btn btn-outline-success" href="@Url.Action("Create")">Cadastrar novo carro</a>
-    <a class="btn btn-outline-dark" href="@Url.Action("DownloadExcel")">Baixar Excel</a
+    <a class="btn btn-outline-dark" href="@Url.Action("DownloadExcel")">Baixar Excel</a>
     <a class="btn btn-outline-dark" href="@Url.Action("Report")">Ver Pdf</a>
     <a class="btn btn-outline-info" href="@Url.Action("BaixarPDF")">Baixar pdf</a>
 </div>
-<table class="table  table-bordered table-hover">
+<table id="tabelaCelular" class="table  table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -49,9 +49,37 @@
                 <td>
                     @Html.ActionLink("Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Exibir Detalhes", "Details", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-info btn-sm" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-danger btn-sm" })
+                    <button class="btn btn-danger btn-sm" onclick="excluirCelular('@item.Id')">Excluir</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            $('#tabelaCelular').DataTable();
+        });
+
+        function excluirCelular(id) {
+            if (confirm('Deseja realmente excluir este celular?')) {
+                $.post('@Url.Action("DeleteAjax", "Celular")', { id: id }, function (data) {
+                    console.log("1");
+                    if (data.sucesso) {
+                    location.reload();
+                } else {
+                    alert("Erro ao excluir excluir.");
+                }
+            });
+
+
+            }
+        }
+    </script>
+}
